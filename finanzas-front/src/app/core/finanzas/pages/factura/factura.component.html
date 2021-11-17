@@ -1,0 +1,175 @@
+<div>
+  <app-navbar></app-navbar>
+  <div class="contenido">
+    <div class="table-one">
+      <div class="table-one__left">
+        <h1>Datos de la letra</h1>
+        <div class="table-one__left__inputs">
+          <div class="">
+            <mat-form-field appearance="outline" class="container__input">
+              <mat-label>Fecha de Giro (dd/mm/aa)</mat-label>
+              <input
+                matInput
+                [matDatepicker]="picker"
+                formControlName="fecha"
+              />
+              <mat-datepicker-toggle
+                matSuffix
+                [for]="picker"
+              ></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+          </div>
+          <div class="">
+            <mat-form-field appearance="outline" class="container__input">
+              <mat-label>Fecha de Vencimiento (dd/mm/aa)</mat-label>
+              <input
+                matInput
+                [matDatepicker]="pickerr"
+                formControlName="fecha"
+              />
+              <mat-datepicker-toggle
+                matSuffix
+                [for]="pickerr"
+              ></mat-datepicker-toggle>
+              <mat-datepicker #pickerr></mat-datepicker>
+            </mat-form-field>
+          </div>
+          <div class="">
+            <mat-form-field appearance="outline" class="container__input">
+              <mat-label>Valor Nominal (u.m.)</mat-label>
+              <input
+                matInput
+                placeholder=""
+                autocomplete="off"
+                formControlName="email"
+                required
+              />
+            </mat-form-field>
+          </div>
+          <div class="">
+            <mat-form-field appearance="outline" class="container__input">
+              <mat-label>Retención (u.m.)</mat-label>
+              <input
+                matInput
+                placeholder=""
+                autocomplete="off"
+                formControlName="email"
+                required
+              />
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+      <div class="table-one__right">
+        <h1>Tasa y Plazo</h1>
+        <div class="table-one__right__inputs">
+          <div class="">
+            <mat-form-field appearance="outline" class="container__input">
+              <mat-label>(Rt) Retención</mat-label>
+              <input
+                matInput
+                placeholder=""
+                autocomplete="off"
+                formControlName="email"
+                required
+              />
+            </mat-form-field>
+          </div>
+          <div class="">
+            <mat-form-field appearance="outline" class="container__input">
+              <mat-label>(Rt) Retención</mat-label>
+              <input
+                matInput
+                placeholder=""
+                autocomplete="off"
+                formControlName="email"
+                required
+              />
+            </mat-form-field>
+          </div>
+          <div class="">
+            <mat-form-field appearance="outline" class="container__input">
+              <mat-label>(Rt) Retención</mat-label>
+              <input
+                matInput
+                placeholder=""
+                autocomplete="off"
+                formControlName="email"
+                required
+              />
+            </mat-form-field>
+          </div>
+          <div class="">
+            <mat-form-field appearance="outline" class="container__input">
+              <mat-label>Fecha de Descuento (dd/mm/aa)</mat-label>
+              <input
+                matInput
+                [matDatepicker]="pickerrr"
+                formControlName="fecha"
+              />
+              <mat-datepicker-toggle
+                matSuffix
+                [for]="pickerrr"
+              ></mat-datepicker-toggle>
+              <mat-datepicker #pickerrr></mat-datepicker>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="table-two">
+      <div class="table-two__left">
+        <h1>Costes / Gatos Iniciales</h1>
+        <div class="">
+          <mat-form-field appearance="outline" class="container__input">
+            <mat-label>Fecha de Descuento (dd/mm/aa)</mat-label>
+            <input
+              matInput
+              [matDatepicker]="pickerrr"
+              formControlName="fecha"
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="pickerrr"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #pickerrr></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <div class="table-two__left__valor">
+          <div class="">
+            <mat-form-field appearance="outline" class="container__input">
+              <mat-label>Fecha de Descuento (dd/mm/aa)</mat-label>
+              <input
+                matInput
+                [matDatepicker]="pickerrr"
+                formControlName="fecha"
+              />
+              <mat-datepicker-toggle
+                matSuffix
+                [for]="pickerrr"
+              ></mat-datepicker-toggle>
+              <mat-datepicker #pickerrr></mat-datepicker>
+            </mat-form-field>
+          </div>
+          <div class="">
+            <mat-form-field appearance="outline" class="container__input">
+              <mat-label>Fecha de Descuento (dd/mm/aa)</mat-label>
+              <input
+                matInput
+                [matDatepicker]="pickerrr"
+                formControlName="fecha"
+              />
+              <mat-datepicker-toggle
+                matSuffix
+                [for]="pickerrr"
+              ></mat-datepicker-toggle>
+              <mat-datepicker #pickerrr></mat-datepicker>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+      <div class="table-two__right"></div>
+    </div>
+  </div>
+</div>

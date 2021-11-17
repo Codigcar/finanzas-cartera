@@ -1,0 +1,15 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <div class="logo" routerLink="/personProfiles">
+      <span>PETCARE</span>
+    </div>
+    <div class="items-link">
+      <div *ngFor="let item of menu">
+        <a class="center-y" mat-button [routerLink]="item.ruta">
+          <span>{{item.text}}</span>
+          <mat-icon>{{item.icon}}</mat-icon>
+        </a>
+      </div>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>

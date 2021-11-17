@@ -1,0 +1,25 @@
+.contenido {
+  display: flex;
+  flex-direction: column;
+  .table-one {
+    display: flex;
+    .table-one__left {
+      .table-one__left__inputs {
+        // background: red;
+        // display: grid;
+        // grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    .table-one__right {
+      .table-one__right__inputs {
+        // background: cyan;
+        // display: grid;
+        // grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  }
+ 
+}
+.table-two__left__valor{
+  display: flex;
+}
