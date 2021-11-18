@@ -7,6 +7,7 @@ import { ComponentsModule } from 'src/app/shared/components/components.module';
 import { MaterialModule } from 'src/app/material/material.module';
 import { InputTextComponent } from './components/input-text/input-text.component';
 import { HomeComponent } from './pages/home/home.component';
+import { TableComponent } from './components/table/table.component';
 
 
 
@@ -16,7 +17,8 @@ import { HomeComponent } from './pages/home/home.component';
     FacturaComponent,
     ReciboComponent,
     InputTextComponent,
-    HomeComponent
+    HomeComponent,
+    TableComponent
   ],
   imports: [
     CommonModule,

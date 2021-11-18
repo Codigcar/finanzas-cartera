@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import userRoutes from './src/routes/users.routes';
+import honoraryRoutes from './src/routes/honorary.routes';
 import 'reflect-metadata';
 import { dbConnection } from './src/database/databaseconfig';
 
@@ -10,7 +11,8 @@ class Server {
     private port: string;
     // private usuariosPath: string;
     private apiPaths = {
-        usuarios:'/api/v1/users'
+        usuarios:'/api/v1/users',
+        honoraries:'/api/v1/honoraries'
     }
 
     constructor() {
@@ -48,6 +50,7 @@ class Server {
     public routes() {
         // this.app.use(this.authPath, require('./src/routes/users'));
         this.app.use(this.apiPaths.usuarios, userRoutes);
+        this.app.use(this.apiPaths.honoraries, honoraryRoutes);
     }
 
     public listen(){
