@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { getRepository } from "typeorm";
 import { Account } from "../models/account.model";
+import { Honorary } from "../models/honorary.mode";
 
 export const createHonorary = async (req: Request, res: Response) => {
   const {
@@ -9,7 +10,7 @@ export const createHonorary = async (req: Request, res: Response) => {
     fechaDescuento,
     diasTranscurridos,
     totalRecibir,
-    retencion,
+    retencion, //retencion input
     diasxAnio,
     plazoTaza,
     tasaEfectiva,
@@ -17,6 +18,8 @@ export const createHonorary = async (req: Request, res: Response) => {
     CyGF,
     periodoCapital,
     tasaNominal,
+    accountId,
+    save,
   } = req.body;
 
   const tasaEfectivaAnual = TEA(
@@ -56,31 +59,80 @@ export const createHonorary = async (req: Request, res: Response) => {
     diasTranscurridos
   );
 
-  return res.json({
-    msg: "resultado",
-    tasa_efectiva_anual: tasaEfectivaAnual,
-    tasa_efectiva: tasaEfectivaXdias,
-    tasa_descontada: tasaDescontada,
-    descuento_total: descuentoTotal,
-    retencionRt: retencionRt,
-    valor_neto: valorNeto,
-    valor_total_recibir_vr: valorTotalRecibirVR,
-    valor_total_entregar_ve: valorTotalEntregarVE,
-    tcea: tasaCosteEfectivaAnual,
-    retencion_input:retencion
-    // dias_trans:diastrans
-  });
+  //guardar BD
+  if (save === 1) {
+    const newHonorary = getRepository(Honorary).create({
+      tasaEfectivaAnual,
+      diasTranscurridos: diasTranscurridos.toFixed(),
+      tasaEfectivaXdias,
+      tasaDescontada,
+      descuentoTotal,
+      retencionRt: retencionRt.toFixed(),
+      valorNeto,
+      valorTotalRecibirVR,
+      valorTotalEntregarVE,
+      tasaCosteEfectivaAnual,
+      retencionInput: retencion,
+      fechaEmision,
+      fechaPago,
+      fechaDescuento,
+      CyGI: CyGI.toFixed(),
+      CyGF: CyGF.toFixed(),
+      account: accountId,
+    });
+
+    const results = await getRepository(Honorary).save(newHonorary);
+
+    return res.json({
+      ok: true,
+      body: results,
+    });
+  } else {
+    return res.json({
+      ok: true,
+      body: {
+        tasaEfectivaAnual,
+        diasTranscurridos: diasTranscurridos.toFixed(),
+        tasaEfectivaXdias,
+        tasaDescontada,
+        descuentoTotal,
+        retencionRt: retencionRt.toFixed(),
+        valorNeto,
+        valorTotalRecibirVR,
+        valorTotalEntregarVE,
+        tasaCosteEfectivaAnual ,
+        retencionInput: retencion,
+        fechaEmision,
+        fechaPago,
+        fechaDescuento,
+        CyGI: CyGI.toFixed(),
+        CyGF: CyGF.toFixed(),
+        account: accountId,
+      },
+    });
+  }
 };
 
-export const createUsuario = async (req: Request, res: Response) => {
-  return res.json({
-    body: req.body,
-  });
+export const getHonorariesByUserId = async (req: Request, res: Response) => {
+  try {
+    // const honoraries = await getRepository(Honorary).find();
+    const { accountId } = req.body;
+    const honoraries = await getRepository(Honorary)
+      .createQueryBuilder("honoraries")
+      .where("honoraries.accountId = :accountId ", { accountId: accountId })
+      .getMany();
+    return res.json({
+      ok: true,
+      body: honoraries,
+    });
+  } catch (error) {
+    res.status(500).json({
+      ok: false,
+      body: "Contactese con el administrador",
+    });
+  }
 };
 
-const aprox7digit = (result: any) => {
-  return Math.round(result * 10000000) / 10000000;
-};
 const aprox2digit = (result: any) => {
   return Math.round(result * 100) / 100;
 };
@@ -93,7 +145,7 @@ const TEA = (
   tasaNominal: any
 ) => {
   let result = 0;
-  if (tasaEfectiva !== '') {
+  if (tasaEfectiva !== "") {
     result =
       (Math.pow(
         1.0 + (tasaEfectiva * 1.0) / 100.0,
@@ -106,22 +158,10 @@ const TEA = (
     let n = (diasxAnio * 1.0) / (periodoCapital * 1.0);
     result = (Math.pow(1.0 + (tasaNominal * 1.0) / 100.0 / m, n) - 1.0) * 100.0;
   }
-  const tea = aprox7digit(result);
+  // const tea = aprox7digit(result);
+  const tea = result.toFixed();
+
   return tea;
-};
-
-const Diastrans = (fechaPago: any, fechaDescuento: any) => {
-  return (fechaPago.getTime() - fechaDescuento.getTime()) / 86400000;
-};
-
-/*------------------------*/
-const FpagoMenosFemision = (fechaPago: any, fechaEmision: any) => {
-  let dias = (fechaPago.getTime() - fechaEmision.getTime()) / 86400000;
-  return dias;
-};
-const FepagoMenosFDescuento = (fechaPago: any, fechaEmision: any) => {
-  let dias = (fechaPago.getTime() - fechaEmision.getTime()) / 86400000;
-  return dias;
 };
 
 /*----------------------*/
@@ -133,8 +173,7 @@ const TasaEfectiva = (tea: any, diastrans: any, diasxAnio: any) => {
     ) -
       1.0) *
     100.0;
-  // let tasaefectivaXdias=aprox7digit(result);
-  return result;
+  return result.toFixed(7);
 };
 
 const TasaDescontada = (tasaefectivaXdias: any) => {
@@ -143,16 +182,15 @@ const TasaDescontada = (tasaefectivaXdias: any) => {
       100.0 /
       (1 + (tasaefectivaXdias * 1.0) / 100.0)) *
     100.0;
-  return result;
+  return result.toFixed(7);
 };
 const Descuentototal = (tRecibir: any, tasaDescontada: any) => {
   let result = tRecibir * ((tasaDescontada * 1.0) / 100.0);
-  return result;
+  return result.toFixed(2);
 };
 const ValorNeto = (tRecibir: any, Descuento: any) => {
   let result = tRecibir - Descuento;
-  // vNeto=aprox2digit(result);
-  return result;
+  return result.toFixed(2);
 };
 const RetencionCal = (tRecibir: any, retencionInput: any) => {
   let temp = retencionInput;
@@ -168,7 +206,7 @@ const ValorTotalRecibirVR = (vNeto: any, retencion: any, CyGI: any) => {
   let result = vNeto - retencion;
   result = result - CyGI; //menos costos y gastos iniciales
   const vRecibir = aprox2digit(result);
-  return vRecibir;
+  return vRecibir.toFixed(2);
 };
 
 const valorTotalEntregar = (
@@ -178,7 +216,7 @@ const valorTotalEntregar = (
 ) => {
   const result: number = tRecibir - retencion;
   let vEntregar = aprox2digit(Number(result) + Number(CyGF));
-  return vEntregar;
+  return vEntregar.toFixed(2);
 };
 
 const TCostoEAnual = (
@@ -187,13 +225,21 @@ const TCostoEAnual = (
   diasxAnio: any,
   diastrans: any
 ) => {
-  const result =
+  let result =
     (Math.pow(
       ((vEntregar * 1.0) / vRecibir) * 1.0,
       (diasxAnio * 1.0) / (diastrans * 1.0)
     ) -
       1.0) *
-    100.0;
-  const TCEA = aprox7digit(result);
-  return TCEA;
+      100.0;
+  return result.toFixed(7);
+  /* 
+  let result =
+    (Math.pow(
+      ((vEntregar * 1.0) / vRecibir) * 1.0,
+      (diasxAnio * 1.0) / (diastrans * 1.0)
+    ) -
+      1.0) /
+      100000000000;
+  return result.toFixed(7); */
 };

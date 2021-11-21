@@ -21,3 +21,9 @@ export const setPersonProductAction = createAction(
   '[Person Component] setPersonProductAction',
   props<{ selectedProduct: any }>()
 );
+
+
+export const setSelectedTasa = createAction(
+  '[Person Component] setSelectedTasa',
+  props<{ setSelectedTasa: string }>()
+);

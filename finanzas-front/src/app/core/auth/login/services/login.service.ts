@@ -51,6 +51,7 @@ export class LoginService {
         if (resp.ok) {
           this.showTast();
           this.router.navigate(['personProfiles']);
+          localStorage.setItem('id',resp.body.id)
         } else {
           Swal.fire({
             icon: 'error',

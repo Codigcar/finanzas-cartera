@@ -13,31 +13,53 @@ export class Honorary extends BaseEntity {
   id: number;
 
   @Column()
-  tasaEfectivaAnual: number;
+  tasaEfectivaAnual: string;
 
   @Column()
-  tasaEfectivaXdias: number;
+  diasTranscurridos: string;
 
   @Column()
-  tasaDescontada: number;
+  tasaEfectivaXdias: string;
 
   @Column()
-  descuentoTotal: number;
+  tasaDescontada: string;
 
   @Column()
-  retencionRt: number;
+  descuentoTotal: string;
 
   @Column()
-  valorNeto: number;
+  retencionRt: string;
 
   @Column()
-  valorTotalRecibirVR: number;
+  retencionInput: string;
 
   @Column()
-  valorTotalEntregarVE: number;
+  valorNeto: string;
 
   @Column()
-  tasaCosteEfectivaAnual: number;
+  valorTotalRecibirVR: string;
+
+  @Column()
+  valorTotalEntregarVE: string;
+
+  @Column()
+  tasaCosteEfectivaAnual: string;
+
+  @Column()
+  fechaEmision: string;
+
+  @Column()
+  fechaPago: string;
+  
+  @Column()
+  fechaDescuento: string;
+  
+  @Column()
+  CyGI: string;
+  
+  @Column()
+  CyGF: string;
+  
 
 
   @ManyToOne(() => Account, (account) => account.honoraries)

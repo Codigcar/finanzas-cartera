@@ -5,6 +5,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import Swal from 'sweetalert2';
 import { IAppState } from 'src/app/app.reducer';
 import { Store } from '@ngrx/store';
+import { FacturaService } from '../../services/factura.service';
 
 @Component({
   selector: 'app-home',
@@ -16,6 +17,9 @@ export class HomeComponent implements OnInit {
   dataSource!: MatTableDataSource<any>;
   displayedColumns: string[] = [
     'id',
+    'fechaEmision',
+    'fechaPago',
+    'fechaDescuento',
     'tea',
     'diasTranscurridos',
     'tasaEfectiva',
@@ -30,20 +34,22 @@ export class HomeComponent implements OnInit {
     'TCEA',
   ];
   @ViewChild(MatPaginator) paginator!: MatPaginator;
-  private selectedPersonProfileId: number = 0;
 
   constructor(
     public dialog: MatDialog,
-    private store: Store<IAppState>
+    private store: Store<IAppState>,
+    private facturaService: FacturaService
   ) {}
 
   ngOnInit(): void {
+    let userId = localStorage.getItem('id');
+    this.facturaService.getFacturasByAccountId(userId).subscribe(resp => {
+      console.log('[[resp home]]', resp.body);
+      
+      this.crearTabla(resp.body);
+    })
 
-    this.crearTabla([]);
-    
-    this.store.select('person').subscribe((resp) => {
-      this.selectedPersonProfileId = resp.user?.id!;
-    });
+ 
   }
   public crearTabla(data: any) {
     this.dataSource = new MatTableDataSource(data);

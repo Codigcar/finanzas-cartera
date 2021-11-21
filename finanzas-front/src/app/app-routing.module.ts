@@ -36,7 +36,6 @@ const routes: Routes = [
     component: HomeComponent,
     pathMatch: 'full',
   },
- 
 
   {
     path: 'personProfiles/letras',

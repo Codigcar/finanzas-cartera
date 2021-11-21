@@ -5,9 +5,10 @@ import { FacturaComponent } from './pages/factura/factura.component';
 import { ReciboComponent } from './pages/recibo/recibo.component';
 import { ComponentsModule } from 'src/app/shared/components/components.module';
 import { MaterialModule } from 'src/app/material/material.module';
-import { InputTextComponent } from './components/input-text/input-text.component';
+// import { InputTextComponent } from './components/input-text/input-text.component';
 import { HomeComponent } from './pages/home/home.component';
-import { TableComponent } from './components/table/table.component';
+import { ViewDataComponent } from './components/dialog/view-data/view-data.component';
+// import { TableComponent } from './components/table/table.component';
 
 
 
@@ -16,9 +17,10 @@ import { TableComponent } from './components/table/table.component';
     LetraComponent,
     FacturaComponent,
     ReciboComponent,
-    InputTextComponent,
+    // InputTextComponent,
     HomeComponent,
-    TableComponent
+    ViewDataComponent,
+    // TableComponent
   ],
   imports: [
     CommonModule,

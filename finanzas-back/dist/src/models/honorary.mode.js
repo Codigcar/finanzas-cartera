@@ -20,40 +20,68 @@ __decorate([
 ], Honorary.prototype, "id", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
-    __metadata("design:type", Number)
+    __metadata("design:type", String)
 ], Honorary.prototype, "tasaEfectivaAnual", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
-    __metadata("design:type", Number)
+    __metadata("design:type", String)
+], Honorary.prototype, "diasTranscurridos", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
 ], Honorary.prototype, "tasaEfectivaXdias", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
-    __metadata("design:type", Number)
+    __metadata("design:type", String)
 ], Honorary.prototype, "tasaDescontada", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
-    __metadata("design:type", Number)
+    __metadata("design:type", String)
 ], Honorary.prototype, "descuentoTotal", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
-    __metadata("design:type", Number)
+    __metadata("design:type", String)
 ], Honorary.prototype, "retencionRt", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
-    __metadata("design:type", Number)
+    __metadata("design:type", String)
+], Honorary.prototype, "retencionInput", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
 ], Honorary.prototype, "valorNeto", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
-    __metadata("design:type", Number)
+    __metadata("design:type", String)
 ], Honorary.prototype, "valorTotalRecibirVR", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
-    __metadata("design:type", Number)
+    __metadata("design:type", String)
 ], Honorary.prototype, "valorTotalEntregarVE", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
-    __metadata("design:type", Number)
+    __metadata("design:type", String)
 ], Honorary.prototype, "tasaCosteEfectivaAnual", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], Honorary.prototype, "fechaEmision", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], Honorary.prototype, "fechaPago", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], Honorary.prototype, "fechaDescuento", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], Honorary.prototype, "CyGI", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], Honorary.prototype, "CyGF", void 0);
 __decorate([
     (0, typeorm_1.ManyToOne)(() => account_model_1.Account, (account) => account.honoraries),
     __metadata("design:type", account_model_1.Account)

@@ -3,7 +3,7 @@ import {
   setPersonAction,
   setPersonProviderAction,
 } from '../actions/person.actions';
-import { setPersonProductTypeAction, setPersonProductAction } from '../actions/person.actions';
+import { setPersonProductTypeAction, setPersonProductAction, setSelectedTasa } from '../actions/person.actions';
 import { IUser } from '../interface/user.interface';
 
 export interface State {
@@ -11,13 +11,15 @@ export interface State {
   selectedProvider: any | null;
   selectedProductType: number | null;
   selectedProduct: any | null;
+  setSelectedTasa:string | null;
 }
 
 export const initialState: State = {
   user: null,
   selectedProvider: null,
   selectedProductType: 1,
-  selectedProduct: null
+  selectedProduct: null,
+  setSelectedTasa:'Efectiva'
 };
 
 const _personReducer = createReducer(
@@ -41,6 +43,10 @@ const _personReducer = createReducer(
   on(setPersonProductAction, (state, { selectedProduct }) => ({
     ...state,
     selectedProduct: { ...selectedProduct },
+  })),
+  on(setSelectedTasa, (state, { setSelectedTasa }) => ({
+    ...state,
+    setSelectedTasa: setSelectedTasa,
   })),
 );
 

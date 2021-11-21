@@ -2,24 +2,30 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
-import { IFacturaRequest } from '../interface/honorary.interface';
+import {
+  IDocumentRequest,
+  IDocumentResponse,
+} from '../interface/document.interface';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class FacturaService {
-
   private url_base: string = environment.URI_BASE;
 
-  constructor(
-    private http: HttpClient,
-    private router: Router
-  ) { }
+  constructor(private http: HttpClient, private router: Router) {}
 
-  createFactura(form: IFacturaRequest){
-    this.http.post(`${this.url_base}/honoraries`,form).subscribe(resp => {
-      console.log('respuesta: ',resp);
-      
-    })
+  createFactura(form: any) {
+    console.log('[request ingresado]:: ', form);
+    return this.http.post<IDocumentResponse>(
+      `${this.url_base}/honoraries`,
+      form
+    );
+  }
+
+  getFacturasByAccountId(accountId: any) {
+    return this.http.post<IDocumentResponse>(`${this.url_base}/honoraries/honorariesByAccountId`, {
+      accountId,
+    });
   }
 }

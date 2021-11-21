@@ -7,6 +7,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import { FooterComponent } from './footer/footer/footer.component';
 import { RouterModule } from '@angular/router';
+import { MaterialModule } from 'src/app/material/material.module';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { RouterModule } from '@angular/router';
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,
-    RouterModule
+    RouterModule,
+    MaterialModule
   ],
    exports:[
      NavbarComponent,
