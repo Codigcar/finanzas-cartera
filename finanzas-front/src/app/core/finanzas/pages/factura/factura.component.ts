@@ -89,7 +89,7 @@ export class FacturaComponent implements OnInit {
 
   public listCostesyGastosIniciales: any[] = [];
   public listCostesyGastosFinales: any[] = [];
-  public accountId:number = Number(localStorage.getItem('id')) || 1;
+  public accountId:number = Number(localStorage.getItem('id'));
 
   constructor(
     private fb: FormBuilder,
@@ -264,6 +264,7 @@ export class FacturaComponent implements OnInit {
         save: 0,
         accountId: this.accountId,
         tasa:  this.selectedTasa
+        // tasa: localStorage.getItem('selectedTasa')
       })
       .subscribe((resp: IDocumentResponse) => {
         console.log('[[resp]]::', resp);
@@ -284,6 +285,7 @@ export class FacturaComponent implements OnInit {
           save: 0,
           accountId: this.accountId,
           tasa:  this.selectedTasa
+          // tasa: localStorage.getItem('selectedTasa')
         });
       });
   }

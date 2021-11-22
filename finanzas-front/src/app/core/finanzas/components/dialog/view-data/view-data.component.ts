@@ -4,6 +4,8 @@ import Swal from 'sweetalert2';
 import { FacturaService } from '../../../services/factura.service';
 import { IDocumentResponse } from '../../../interface/document.interface';
 import { Router } from '@angular/router';
+import { IAppState } from 'src/app/app.reducer';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-view-data',
@@ -13,16 +15,23 @@ import { Router } from '@angular/router';
 export class ViewDataComponent implements OnInit {
   sortedData: any[] = [
   ];
+  public selectedTasa: string = 'Efectiva';
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public dataModel: any,
     private facturaService: FacturaService,
-    private router:Router
+    private router:Router,
+    private store: Store<IAppState>,
   ) {}
 
   ngOnInit(): void {
     this.sortedData = this.dataModel;
     console.log('dataModel: ', this.dataModel);
+
+    this.store.select('person').subscribe( resp => {
+      this.selectedTasa = resp.setSelectedTasa!;
+    })
+
   }
 
   public openDialogSave() {
@@ -58,7 +67,7 @@ export class ViewDataComponent implements OnInit {
             tasaNominal: this.dataModel.dataRequest.tasaNominal,
             save: 1,
             accountId: this.dataModel.dataRequest.accountId,
-            tasa: this.dataModel.controls['tasa'].value,
+            tasa:  this.selectedTasa
           })
           .subscribe((resp: IDocumentResponse) => {
             console.log('[[resp SAVE]]::', resp);
