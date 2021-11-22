@@ -7,7 +7,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ComponentsModule } from './shared/components/components.module';
 import { LoginModule } from './core/auth/login/login.module';
 import { RegisterPersonModule } from './core/auth/register-person/register-person.module';
-import { RegisterBusinessModule } from './core/auth/register-business/register-business.module';
 import { HttpClientModule } from '@angular/common/http';
 import { MAT_DATE_LOCALE } from '@angular/material/core'
 
@@ -35,7 +34,6 @@ import { FinanzasModule } from './core/finanzas/finanzas.module';
 
     LoginModule,
     RegisterPersonModule,
-    RegisterBusinessModule,
     
     FinanzasModule,
 

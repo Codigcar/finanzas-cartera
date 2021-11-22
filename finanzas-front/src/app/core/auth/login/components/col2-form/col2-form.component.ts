@@ -37,8 +37,8 @@ export class Col2FormComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.form = this.fb.group({
-      email: ['carlos@gmail.com', Validators.required],
-      password: ['123123', Validators.required],
+      email: ['', Validators.required],
+      password: ['', Validators.required],
     });
 
     this.subscription = this.store.select('ui').subscribe((ui) => {
