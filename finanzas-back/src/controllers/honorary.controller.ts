@@ -20,6 +20,7 @@ export const createHonorary = async (req: Request, res: Response) => {
     tasaNominal,
     accountId,
     save,
+    tasa
   } = req.body;
 
   const tasaEfectivaAnual = TEA(
@@ -27,7 +28,8 @@ export const createHonorary = async (req: Request, res: Response) => {
     diasxAnio,
     plazoTaza,
     periodoCapital,
-    tasaNominal
+    tasaNominal,
+    tasa
   );
   // 2 = diastranscurridos
   const tasaEfectivaXdias = TasaEfectiva(
@@ -142,10 +144,11 @@ const TEA = (
   diasxAnio: any,
   plazoTasa: any,
   periodoCapital: any,
-  tasaNominal: any
+  tasaNominal: any,
+  tasa:any
 ) => {
   let result = 0;
-  if (tasaEfectiva !== "") {
+  if ( tasa == "Efectiva") {
     result =
       (Math.pow(
         1.0 + (tasaEfectiva * 1.0) / 100.0,
@@ -154,12 +157,14 @@ const TEA = (
         1.0) *
       100.0;
   } else {
-    let m = (plazoTasa * 1.0) / (periodoCapital * 1.0);
-    let n = (diasxAnio * 1.0) / (periodoCapital * 1.0);
-    result = (Math.pow(1.0 + (tasaNominal * 1.0) / 100.0 / m, n) - 1.0) * 100.0;
+    if(tasa == "Nominal"){
+      let m = (plazoTasa * 1.0) / (periodoCapital * 1.0);
+      let n = (diasxAnio * 1.0) / (periodoCapital * 1.0);
+      result = (Math.pow(1.0 + (tasaNominal * 1.0) / 100.0 / m, n) - 1.0) * 100.0;
+    }
   }
   // const tea = aprox7digit(result);
-  const tea = result.toFixed();
+  const tea = result.toFixed(7);
 
   return tea;
 };

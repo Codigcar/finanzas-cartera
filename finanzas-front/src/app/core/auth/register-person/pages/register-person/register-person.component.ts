@@ -65,7 +65,7 @@ export class RegisterPersonComponent implements OnInit {
         if(data.ok){
           this.dialog.closeAll();
           this.showTast();
-          this.router.navigate(['personProfiles']);
+          // this.router.navigate(['personProfiles']);
         }
       },
       (err) => {

@@ -14,8 +14,8 @@ const typeorm_1 = require("typeorm");
 const honorary_mode_1 = require("../models/honorary.mode");
 const createHonorary = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { fechaEmision, fechaPago, fechaDescuento, diasTranscurridos, totalRecibir, retencion, //retencion input
-    diasxAnio, plazoTaza, tasaEfectiva, CyGI, CyGF, periodoCapital, tasaNominal, accountId, save, } = req.body;
-    const tasaEfectivaAnual = TEA(tasaEfectiva, diasxAnio, plazoTaza, periodoCapital, tasaNominal);
+    diasxAnio, plazoTaza, tasaEfectiva, CyGI, CyGF, periodoCapital, tasaNominal, accountId, save, tasa } = req.body;
+    const tasaEfectivaAnual = TEA(tasaEfectiva, diasxAnio, plazoTaza, periodoCapital, tasaNominal, tasa);
     // 2 = diastranscurridos
     const tasaEfectivaXdias = TasaEfectiva(tasaEfectivaAnual, diasTranscurridos, diasxAnio);
     const tasaDescontada = TasaDescontada(tasaEfectivaXdias);
@@ -102,21 +102,23 @@ exports.getHonorariesByUserId = getHonorariesByUserId;
 const aprox2digit = (result) => {
     return Math.round(result * 100) / 100;
 };
-const TEA = (tasaEfectiva, diasxAnio, plazoTasa, periodoCapital, tasaNominal) => {
+const TEA = (tasaEfectiva, diasxAnio, plazoTasa, periodoCapital, tasaNominal, tasa) => {
     let result = 0;
-    if (tasaEfectiva !== "") {
+    if (tasa == "Efectiva") {
         result =
             (Math.pow(1.0 + (tasaEfectiva * 1.0) / 100.0, ((diasxAnio * 1.0) / plazoTasa) * 1.0) -
                 1.0) *
                 100.0;
     }
     else {
-        let m = (plazoTasa * 1.0) / (periodoCapital * 1.0);
-        let n = (diasxAnio * 1.0) / (periodoCapital * 1.0);
-        result = (Math.pow(1.0 + (tasaNominal * 1.0) / 100.0 / m, n) - 1.0) * 100.0;
+        if (tasa == "Nominal") {
+            let m = (plazoTasa * 1.0) / (periodoCapital * 1.0);
+            let n = (diasxAnio * 1.0) / (periodoCapital * 1.0);
+            result = (Math.pow(1.0 + (tasaNominal * 1.0) / 100.0 / m, n) - 1.0) * 100.0;
+        }
     }
     // const tea = aprox7digit(result);
-    const tea = result.toFixed();
+    const tea = result.toFixed(7);
     return tea;
 };
 /*----------------------*/

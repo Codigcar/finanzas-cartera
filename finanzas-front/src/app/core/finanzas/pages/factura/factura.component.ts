@@ -32,7 +32,7 @@ export class FacturaComponent implements OnInit {
 
   public selectedDiasxAnio: number = 360;
   public selectedPlazoDeTasa: number = 7;
-  public selectedPeriodoCapital: number = 0;
+  public selectedPeriodoCapital: number = 7;
   public selectedMotivoCyGIniciales: any = 'Portes';
   public selectedMotivoCyGFinales: any = 'Portes';
   public selectedEfectivoOPorcentaje: number = 0;
@@ -129,7 +129,11 @@ export class FacturaComponent implements OnInit {
 
       //nominal
       tasaNominal: [''],
-      periodoCapital: [''],
+      periodoCapital: [{
+        value: this.listPeriodoCapital[this.selectedPeriodoCapital].valor,
+        disabled: true,
+      },],
+      tasa:['']
     });
   }
 
@@ -154,13 +158,13 @@ export class FacturaComponent implements OnInit {
     const listId: number = opt.source.value;
     if (listId === 8) {
       this.form.controls['periodoCapital'].setValue(
-        this.listPlazoDeTasa[listId].valor
+        this.listPeriodoCapital[listId].valor
       );
       this.form.controls['periodoCapital'].enable();
     } else {
       this.form.controls['periodoCapital'].disable();
       this.form.controls['periodoCapital'].setValue(
-        this.listPlazoDeTasa[listId].valor
+        this.listPeriodoCapital[listId].valor
       );
     }
   }
@@ -259,6 +263,7 @@ export class FacturaComponent implements OnInit {
         tasaNominal: this.form.controls['tasaNominal'].value,
         save: 0,
         accountId: this.accountId,
+        tasa:  this.selectedTasa
       })
       .subscribe((resp: IDocumentResponse) => {
         console.log('[[resp]]::', resp);
@@ -278,6 +283,7 @@ export class FacturaComponent implements OnInit {
           tasaNominal: this.form.controls['tasaNominal'].value,
           save: 0,
           accountId: this.accountId,
+          tasa:  this.selectedTasa
         });
       });
   }

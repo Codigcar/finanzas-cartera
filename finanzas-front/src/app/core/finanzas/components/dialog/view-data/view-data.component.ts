@@ -58,6 +58,7 @@ export class ViewDataComponent implements OnInit {
             tasaNominal: this.dataModel.dataRequest.tasaNominal,
             save: 1,
             accountId: this.dataModel.dataRequest.accountId,
+            tasa: this.dataModel.controls['tasa'].value,
           })
           .subscribe((resp: IDocumentResponse) => {
             console.log('[[resp SAVE]]::', resp);

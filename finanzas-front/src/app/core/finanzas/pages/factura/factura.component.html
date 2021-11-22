@@ -243,7 +243,6 @@
                     placeholder=""
                     autocomplete="off"
                     formControlName="tasaEfectiva"
-                    required
                   />
                 </mat-form-field>
               </div>
@@ -265,7 +264,7 @@
                     <mat-label>Período Capital</mat-label>
                     <mat-select
                       [(value)]="selectedPeriodoCapital"
-                      (selectionChange)="selectPlazoTasa($event)"
+                      (selectionChange)="selectPeriodoCapital($event)"
                     >
                       <mat-option
                         *ngFor="let item of listPeriodoCapital"
@@ -282,7 +281,7 @@
                       matInput
                       placeholder=""
                       autocomplete="off"
-                      formControlName="plazoDeTasa"
+                      formControlName="periodoCapital"
                     />
                   </mat-form-field>
                 </div>
