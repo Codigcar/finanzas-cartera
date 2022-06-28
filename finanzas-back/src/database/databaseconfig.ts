@@ -3,11 +3,11 @@ import { createConnection } from 'typeorm';
 export const dbConnection = async() => {
     try{
         await createConnection({
-            type: "postgres",
+            type: "mysql",
             host: "localhost",
-            port: 5432,
-            username: "postgres",
-            password: "admin",
+            port: 3306,
+            username: "root",
+            password: "1231",
             database: "finanzas",
             entities:["dist/src/models/**/*.js"],
             synchronize: true

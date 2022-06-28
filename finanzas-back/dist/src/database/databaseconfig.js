@@ -14,11 +14,11 @@ const typeorm_1 = require("typeorm");
 const dbConnection = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
         yield (0, typeorm_1.createConnection)({
-            type: "postgres",
+            type: "mysql",
             host: "localhost",
-            port: 5432,
-            username: "postgres",
-            password: "admin",
+            port: 3306,
+            username: "root",
+            password: "1231",
             database: "finanzas",
             entities: ["dist/src/models/**/*.js"],
             synchronize: true
