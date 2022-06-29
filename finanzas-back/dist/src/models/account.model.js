@@ -15,7 +15,7 @@ const honorary_mode_1 = require("./honorary.mode");
 let Account = class Account extends typeorm_1.BaseEntity {
 };
 __decorate([
-    (0, typeorm_1.PrimaryGeneratedColumn)(),
+    (0, typeorm_1.PrimaryGeneratedColumn)('uuid'),
     __metadata("design:type", Number)
 ], Account.prototype, "id", void 0);
 __decorate([
@@ -42,6 +42,10 @@ __decorate([
     (0, typeorm_1.OneToMany)(() => honorary_mode_1.Honorary, honorary => honorary.account),
     __metadata("design:type", Array)
 ], Account.prototype, "honoraries", void 0);
+__decorate([
+    (0, typeorm_1.OneToMany)(() => honorary_mode_1.Honorary, honorary => honorary.account),
+    __metadata("design:type", Array)
+], Account.prototype, "bonos", void 0);
 Account = __decorate([
     (0, typeorm_1.Entity)('accounts')
 ], Account);

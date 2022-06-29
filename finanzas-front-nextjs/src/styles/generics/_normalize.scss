@@ -369,3 +369,9 @@ template {
 [hidden] {
   display: none;
 }
+
+html, body {
+  font: {
+    family: 'Lato', sans-serif !important;
+  }
+}

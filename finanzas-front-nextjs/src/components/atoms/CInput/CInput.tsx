@@ -18,19 +18,19 @@ export const CInput = React.memo(
     const { register, formState } = useFormContext();
 
     return (
-      <div className={styles.div}>
-        <label className={styles.label}>{label}</label>
+      <div className={classNameDiv}>
+        <label className={classNameLabel}>{label}</label>
         <input
           autoComplete="off"
           className={`
-            ${styles.input} 
-            ${formState.errors[name] && styles.error}
+            ${classNameInput} 
+            ${formState.errors[name] && styles.borderError}
           `}
           placeholder={placeholder}
           {...register(name)}
           {...rest}
         ></input>
-        <div className={styles.borderError}>
+        <div className={styles.msgError}>
           <ErrorMessage errors={formState.errors} name={name} />
         </div>
       </div>

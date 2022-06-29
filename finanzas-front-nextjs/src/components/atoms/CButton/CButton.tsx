@@ -1,6 +1,5 @@
 import React from "react";
 import BeatLoader from "react-spinners/BeatLoader";
-import { css } from "@emotion/react";
 
 import styles from './CButton.module.scss';
 
@@ -10,13 +9,15 @@ export const CButton = React.memo((props: any) => {
     loading = false,
     disable = false,
     colorSpinner = "#f1f0eb",
+    classNameDiv = "",
+    classNameButton = "",
     ...rest
   } = props;
 
   return (
-    <div className={styles.div}>
+    <div className={classNameDiv}>
       <button
-        className={`${styles.button} ${(disable || loading) && "disable"}`}
+        className={`${classNameButton} ${(disable || loading) && styles.disable}`}
         disabled={disable || loading}
         {...rest}
       >

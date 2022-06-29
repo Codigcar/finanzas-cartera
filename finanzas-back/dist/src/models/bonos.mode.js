@@ -9,53 +9,105 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Honorary = void 0;
+exports.Bono = void 0;
 const typeorm_1 = require("typeorm");
 const account_model_1 = require("./account.model");
-let Honorary = class Honorary extends typeorm_1.BaseEntity {
+let Bono = class Bono extends typeorm_1.BaseEntity {
 };
 __decorate([
-    (0, typeorm_1.PrimaryGeneratedColumn)(),
+    (0, typeorm_1.PrimaryGeneratedColumn)("uuid"),
     __metadata("design:type", Number)
-], Honorary.prototype, "id", void 0);
+], Bono.prototype, "id", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
-], Honorary.prototype, "precioAtual", void 0);
+], Bono.prototype, "VNominal", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
-], Honorary.prototype, "utilidadoPerdida", void 0);
+], Bono.prototype, "VComercial", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
-], Honorary.prototype, "duracion", void 0);
+], Bono.prototype, "NA", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
-], Honorary.prototype, "convexidad", void 0);
+], Bono.prototype, "Fcupon", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
-], Honorary.prototype, "total", void 0);
+], Bono.prototype, "DXA", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
-], Honorary.prototype, "duracionModificada", void 0);
+], Bono.prototype, "TDeTasa", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
-], Honorary.prototype, "VAN", void 0);
+], Bono.prototype, "Capit", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
-], Honorary.prototype, "TIR", void 0);
+], Bono.prototype, "TI", void 0);
 __decorate([
-    (0, typeorm_1.ManyToOne)(() => account_model_1.Account, (account) => account.honoraries),
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], Bono.prototype, "TAD", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], Bono.prototype, "IR", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], Bono.prototype, "FEmision", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], Bono.prototype, "inv", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], Bono.prototype, "moneda", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], Bono.prototype, "precioActual", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], Bono.prototype, "utilidad_o_Perdida", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], Bono.prototype, "duracion", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], Bono.prototype, "convexidad", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], Bono.prototype, "total", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], Bono.prototype, "duracionModificada", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], Bono.prototype, "VAN", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], Bono.prototype, "TIR", void 0);
+__decorate([
+    (0, typeorm_1.ManyToOne)(() => account_model_1.Account, (account) => account.bonos),
     __metadata("design:type", account_model_1.Account)
-], Honorary.prototype, "account", void 0);
-Honorary = __decorate([
+], Bono.prototype, "account", void 0);
+Bono = __decorate([
     (0, typeorm_1.Entity)("bonos")
-], Honorary);
-exports.Honorary = Honorary;
+], Bono);
+exports.Bono = Bono;
 //# sourceMappingURL=bonos.mode.js.map

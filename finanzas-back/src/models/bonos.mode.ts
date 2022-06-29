@@ -8,15 +8,42 @@ import {
 import { Account } from "./account.model";
 
 @Entity("bonos")
-export class Honorary extends BaseEntity {
-  @PrimaryGeneratedColumn()
+export class Bono extends BaseEntity {
+  @PrimaryGeneratedColumn("uuid")
   id: number;
 
   @Column()
-  precioAtual: string;
+  VNominal: string;
+  @Column()
+  VComercial: string;
+  @Column()
+  NA: string;
+  @Column()
+  Fcupon: string;
+  @Column()
+  DXA: string;
+  @Column()
+  TDeTasa: string;
+  @Column()
+  Capit: string;
+  @Column()
+  TI: string;
+  @Column()
+  TAD: string;
+  @Column()
+  IR: string;
+  @Column()
+  FEmision: string;
+  @Column()
+  inv: string;
+  @Column()
+  moneda: string;
 
   @Column()
-  utilidadoPerdida: string;
+  precioActual: string;
+
+  @Column()
+  utilidad_o_Perdida: string;
 
   @Column()
   duracion: string;
@@ -29,14 +56,13 @@ export class Honorary extends BaseEntity {
 
   @Column()
   duracionModificada: string;
-  
+
   @Column()
   VAN: string;
-  
+
   @Column()
   TIR: string;
-  
 
-  @ManyToOne(() => Account, (account) => account.honoraries)
+  @ManyToOne(() => Account, (account) => account.bonos)
   account: Account;
 }

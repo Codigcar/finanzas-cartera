@@ -4,7 +4,6 @@ import { Account } from '../models/account.model';
 
 export const createAccounts = async(req: Request, res: Response): Promise<Response> => {
 
-    // const users = await getRepository(Account).find();
     const newUser = getRepository(Account).create(req.body);
     const results = await getRepository(Account).save(newUser);
     return res.json({

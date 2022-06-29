@@ -1,22 +1,9 @@
-@import '@styles/settings';
+@import "@styles/settings";
 
-.div{
-    display: flex;
-    flex-direction: column;
-    margin-bottom: .8rem;
-    width: 100%;
+.borderError {
+  border: 2.2px solid $red !important;
 }
-.label{
-    padding: 12px 0px;
-}
-.input {
-    border: 1.8px solid $gray;
-    padding: 7px 5px;
-    border-radius: 8px;
-}
-.error{
-    border-color: red;
-}
-.borderError{
-    color:red;
+.msgError {
+  font-weight: bold;
+  color: $red;
 }

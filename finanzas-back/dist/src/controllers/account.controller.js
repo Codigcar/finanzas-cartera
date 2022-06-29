@@ -13,7 +13,6 @@ exports.getAccountLogin = exports.createAccounts = void 0;
 const typeorm_1 = require("typeorm");
 const account_model_1 = require("../models/account.model");
 const createAccounts = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    // const users = await getRepository(Account).find();
     const newUser = (0, typeorm_1.getRepository)(account_model_1.Account).create(req.body);
     const results = yield (0, typeorm_1.getRepository)(account_model_1.Account).save(newUser);
     return res.json({

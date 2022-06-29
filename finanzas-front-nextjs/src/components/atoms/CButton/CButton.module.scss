@@ -1,12 +1,16 @@
 @import "@styles/settings";
 
 .div {
+  color: white;
   background-color: green;
   text-align: center;
   border-radius: 5px;
   margin-top: 40px;
-  padding: 8px 0px;
+  padding: 8px 10px;
 }
 .button {
-  color: white;
+}
+
+.disable {
+  opacity: 0.5;
 }

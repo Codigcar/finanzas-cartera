@@ -1,10 +1,11 @@
 import {Entity, Column, PrimaryGeneratedColumn, BaseEntity, OneToMany} from 'typeorm'
+import { Bono } from './bonos.mode';
 import { Honorary } from './honorary.mode';
 
 @Entity('accounts')
 export class Account extends BaseEntity {
 
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn('uuid')
   id: number;
 
   @Column()
@@ -25,6 +26,9 @@ export class Account extends BaseEntity {
 
   @OneToMany(() => Honorary, honorary => honorary.account)
   honoraries: Honorary[];
+
+  @OneToMany(() => Honorary, honorary => honorary.account)
+  bonos: Bono[];
 
 
 
